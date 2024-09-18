@@ -1,0 +1,1 @@
+# This is where we will handle communicaiton with the api for the ai
