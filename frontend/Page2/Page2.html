@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+</head>
+<body>
+    <h1>Quiz</h1>
+
+    <form id="quizForm">
+      {% for question in questions %}
+      <div class="question-container">
+        <h3>Question {{ loop.index }}</h3>
+        <p>{{ question.question_text }}</p>
+        <label for="answer{{ loop.index }}">Your Answer:</label>
+        <input type="text" id="answer{{ loop.index }}" name="answer{{ loop.index }}" required>
+      </div>
+      {% endfor %}
+    
+      <button type="submit">Submit Answers</button>
+    </form>
+</body>
+</html>
