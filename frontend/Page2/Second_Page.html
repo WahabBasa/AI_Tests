@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Youself By Yourself</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: lightgray;
+        }
+        .quiz {
+            width: 400px;
+            padding: 20px;
+            background-color: lightgray;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            border-radius: 8px;
+        }
+        .quiz h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .upload{
+            border: 3px dashed #0c0b0b;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 30px;
+            cursor: pointer;
+            color: #333;
+        }
+        .upload button {
+            background-color: #28a745;
+            color:lightgray;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .dropdown {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #8a8989;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .button {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .pic{
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz">
+        <h2>Test Youself By Yourself</h2>
+        <div class="upload">
+            <div class="pic">
+                <img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-2/72/document-icon.png" width="72" height="72">
+            </div> 
+            <br>
+            <button>Choose PDF</button>
+            <br>
+            <p>drag or drop your PDF here</p>
+        </div>
+        <select class="dropdown">
+            <option>Select Difficulty Level</option>
+            <option>Easy</option>
+            <option>Medium</option>
+            <option>Hard</option>
+        </select>
+        <select class="dropdown">
+            <option>Select Number of Questions</option>
+            <option>5</option>
+            <option>10</option>
+            <option>15</option>
+        </select>
+        <button onclick="window.location.href='../Page3/page3.html'">Generate Quiz</button>
+    </div>
+</body>
+</html>

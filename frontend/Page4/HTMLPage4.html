@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+
+        .box {
+            width: 60%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+
+        .quiz-header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .score {
+            font-size: 18px;
+            color: green;
+            font-weight: bold;
+        }
+
+        .question-container {
+            text-align: left;
+        }
+
+            .question-container h3 {
+                font-size: 16px;
+                margin-bottom: 5px;
+            }
+
+        .answer {
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 5px;
+        }
+
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .correct-answer {
+            font-size: 14px;
+            color: #155724;
+            margin-bottom: 10px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+            .button-container button {
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 14px;
+                color: #fff;
+            }
+
+        .save-button {
+            background-color: #007bff;
+        }
+
+        .retake-button, .new-quiz-button, .share-button {
+            background-color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="box">
+        <div class="quiz-header">Quiz Results</div>
+        <div class="score">7/10 Correct - 70%<br>Great job! You're on the right track.</div>
+    </div>
+
+
+    <div class="box">
+        Correct vs Incorrect Chart
+    </div>
+
+
+    <div class="box">
+        Time Taken: 15 minutes
+    </div>
+
+
+    <div class="box question-container">
+        <h3>Question 1</h3>
+        <p>What is the capital of France?</p>
+        <div class="answer correct">Your answer: Paris</div>
+    </div>
+
+
+    <div class="box question-container">
+        <h3>Question 2</h3>
+        <p>Which planet is known as the Red Planet?</p>
+        <div class="answer incorrect">Your answer: Venus</div>
+        <div class="correct-answer">Correct answer: Mars</div>
+    </div>
+
+
+    <div class="button-container">
+        <button class="save-button">Save Results</button>
+        <button class="retake-button">Retake Quiz</button>
+        <button class="new-quiz-button">New Quiz</button>
+        <button class="share-button">Share Results</button>
+    </div>
+
+</body>
+</html>

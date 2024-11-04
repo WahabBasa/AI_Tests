@@ -1,0 +1,14 @@
+#page {
+
+    background: 
+ 
+    border: 15px ridge rgb(0, 8, 255);
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+ 
+    height: 750px;
+    margin: 10px auto 200px;
+    width: 900px;
+ }
+ 
