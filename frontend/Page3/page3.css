@@ -1,13 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 body {
     background-color: #f0f2f5;
     min-height: 100vh;
+    color:#333;
 }
 
 header {
@@ -27,7 +29,7 @@ header {
 }
 
 .exit-button {
-    background-color: #4285f4;
+    background-color: #007bff;
     color: white;
     border: none;
     padding: 0.5rem 1rem;
@@ -35,10 +37,11 @@ header {
     cursor: pointer;
     font-size: 1rem;
     transition: background-color 0.3s ease;
+    text-decoration: none;
 }
 
 .exit-button:hover {
-    background-color: #3367d6;
+    background-color: #007bff;
 }
 
 .quiz-info {
@@ -88,7 +91,7 @@ main {
 
 .option:hover {
     background-color: #f8f9fa;
-    border-color: #4285f4;
+    border-color: #007bff;
     transform: translateX(4px);
 }
 
@@ -100,7 +103,7 @@ main {
 }
 
 .nav-button {
-    background-color: #4285f4;
+    background-color: #007bff;
     color: white;
     border: none;
     padding: 0.5rem 1rem;
@@ -111,7 +114,7 @@ main {
 }
 
 .nav-button:hover {
-    background-color: #3367d6;
+    background-color: #007bff;
 }
 
 .progress-bar {
@@ -125,7 +128,7 @@ main {
 .progress {
     width: 30%;
     height: 100%;
-    background-color: #4285f4;
+    background-color: #007bff;
     border-radius: 4px;
     transition: width 0.3s ease;
 }
