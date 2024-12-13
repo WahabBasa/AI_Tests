@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Youself By Yourself</title>
+    <link rel="stylesheet" href="../static/css/Second_Page_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script defer>
+        let pdfContent = null;
+        let isProcessing = false;
+
+        window.onload = function() {
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = '.pdf';
+            fileInput.style.display = 'none';
+            
+            document.getElementById('pdfButton').onclick = () => fileInput.click();
+            fileInput.onchange = handleFileSelect;
+            document.getElementById('generateQuiz').onclick = handleQuizGeneration;
+        };
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file && file.type === 'application/pdf') {
+                processFile(file);
+            } else {
+                alert('Please upload a valid PDF file');
+            }
+        }
+
+        function processFile(file) {
+            const reader = new FileReader();
+            const uploadText = document.querySelector('.upload p');
+            
+            reader.onload = function(e) {
+                pdfContent = e.target.result;
+                uploadText.textContent = file.name;
+            };
+            
+            reader.onerror = function() {
+                uploadText.textContent = 'Error reading file';
+                pdfContent = null;
+            };
+            
+            reader.readAsDataURL(file);
+        }
+
+        function handleQuizGeneration() {
+            if (isProcessing || !pdfContent) {
+                alert('Please wait or upload a PDF first');
+                return;
+            }
+
+            const generateButton = document.getElementById('generateQuiz');
+            isProcessing = true;
+            generateButton.disabled = true;
+            generateButton.textContent = 'Processing...';
+
+            fetch('/process-pdf', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ content: pdfContent })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    window.location.href = '/test';
+                } else {
+                    throw new Error(data.error || 'Failed to generate quiz');
+                }
+            })
+            .catch(error => {
+                alert(error.message);
+            })
+            .finally(() => {
+                isProcessing = false;
+                generateButton.disabled = false;
+                generateButton.textContent = 'Generate Quiz';
+            });
+        }
+
+    </script>
+
+</head>
+<body>
+
+    <nav class="nav">
+
+        <a href="/">Home</a>
+        <a href="/quiz">AI Quiz</a>
+        <a href="/videos">Study Videos</a>
+
+      </nav>
+
+    <div class="quiz">
+
+        <h2>Create Your Own Quiz</h2>
+
+        <div class="upload">
+
+            <div class="pic">
+                <img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-2/72/document-icon.png" width="72" height="72">
+            </div> 
+
+            <br>
+            <button id="pdfButton">Choose PDF</button>
+            <br>
+            <p>drag or drop your PDF here</p>
+
+        </div>
+
+        <select class="dropdown">
+
+            <option>Select Difficulty Level</option>
+            <option>Easy</option>
+            <option>Medium</option>
+            <option>Hard</option>
+
+        </select>
+
+        <select class="dropdown">
+
+            <option>Select Number of Questions</option>
+            <option>5</option>
+            <option>10</option>
+            <option>15</option>
+
+        </select>
+        <button class="upload button" id="generateQuiz">Generate Quiz</button>
+
+    </div>
+</body>
+</html>

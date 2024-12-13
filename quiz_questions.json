@@ -1,0 +1,52 @@
+{
+    "questions": [
+        {
+            "index": 1,
+            "question": "Where is JavaScript code typically placed in modern web development?",
+            "options": [
+                "A) In a separate file that is included in the HTML5 document",
+                "B) Only within the <head> section of HTML",
+                "C) Directly inside the <body> tag",
+                "D) Always inline with HTML elements"
+            ],
+            "correct": "A",
+            "explanation": "According to the text, JavaScript code is typically placed in a separate file and then included in the HTML5 document. This makes the code more reusable since it can be included in any HTML5 document, which is common practice in professional web development today."
+        },
+        {
+            "index": 2,
+            "question": "What is the default MIME type for a <script> tag in HTML5?",
+            "options": [
+                "A) application/javascript",
+                "B) text/javascript",
+                "C) application/ecmascript",
+                "D) text/plain"
+            ],
+            "correct": "B",
+            "explanation": "The text explicitly states that in HTML5, the default MIME type for a <script> is 'text/javascript', which is why you can omit the type attribute from <script> tags in HTML5 documents."
+        },
+        {
+            "index": 1,
+            "question": "What is the precedence relationship between equality operators and relational operators?",
+            "options": [
+                "A) Equality operators have higher precedence than relational operators",
+                "B) Relational operators have higher precedence than equality operators",
+                "C) Both operators have the same precedence level",
+                "D) The precedence depends on the specific operators being used"
+            ],
+            "correct": "B",
+            "explanation": "According to the text, equality operators have a lower precedence than relational operators"
+        },
+        {
+            "index": 2,
+            "question": "How do you create a new Date object according to the text?",
+            "options": [
+                "A) By just typing Date()",
+                "B) By using the date operator",
+                "C) By using the new operator followed by Date and parentheses",
+                "D) By calling the local time function"
+            ],
+            "correct": "C",
+            "explanation": "The text specifically states that to create a new instance of a Date object, you must use the new operator followed by Date and a pair of parentheses"
+        }
+    ]
+}

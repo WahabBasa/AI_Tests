@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Quiz Application</title>
+    <link rel="stylesheet" href="../static/css/page3_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script defer>
+        var counter = 1;
+        var currentQuestion = '';
+        var optionA = '';
+        var optionB = '';
+        var optionC = '';
+        var optionD = '';
+        var correctAnswer = '';
+        var quizQuestions = null;
+        var selectedAnswers = {};
+        var score = 0;
+        var answer = '';
+        var userAnswer = '';
+
+        window.onload = async function() {
+            try {
+                var response = await fetch('/get-questions');
+                var data = await response.json();
+                quizQuestions = Object.keys(data.questions).map(key => data.questions[key]);
+                loadQuestion();
+                setupNavigation();
+                setupOptionListeners();
+            } catch (error) {
+                document.getElementById('question-text').innerHTML = 'Error loading questions';
+            }
+        }
+
+        function loadQuestion() {
+            if (!quizQuestions) return;
+            
+            var question = quizQuestions[counter - 1];
+            
+            currentQuestion = question.question;
+            [optionA, optionB, optionC, optionD] = question.options;
+            correctAnswer = question.correct;
+            answer = correctAnswer;
+            
+            document.getElementById('question-text').innerHTML = currentQuestion;
+            document.getElementById('question-number').innerHTML = 
+                `Question ${counter} of ${quizQuestions.length}`;
+            document.getElementById('option-a').innerHTML = optionA;
+            document.getElementById('option-b').innerHTML = optionB;
+            document.getElementById('option-c').innerHTML = optionC;
+            document.getElementById('option-d').innerHTML = optionD;
+
+            // Reset all option styles
+            document.querySelectorAll('.option').forEach(option => {
+                option.classList.remove('hover');
+            });
+
+            // Restore previous selection if it exists
+            if (selectedAnswers[counter]) {
+                document.getElementById(selectedAnswers[counter]).classList.add('hover');
+            }
+        }
+
+        function setupOptionListeners() {
+            document.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', function() {
+                    // Reset all options
+                    document.querySelectorAll('.option').forEach(opt => {
+                        opt.classList.remove('hover');
+                        opt.style.transform = '';
+                        opt.style.borderColor = '';
+                    });
+                    
+                    // Keep hover effect on clicked option
+                    this.style.transform = 'translateX(4px)';
+                    this.style.borderColor = '#007bff';
+                    
+                    // Get user's choice (A, B, C, or D)
+                    userAnswer = this.id.split('-')[1].toUpperCase();
+                    
+                    // Simple score check - if correct answer, add a point
+                    if (userAnswer === answer) {
+                        score++;
+                    }
+                    
+                    // Save user's choice
+                    selectedAnswers[counter] = this.id;
+                });
+            });
+        }
+
+        function setupNavigation() {
+            document.getElementById('next-button').addEventListener('click', async () => {
+                if (counter === quizQuestions.length) {  // If it's the last question
+                    try {
+                        await fetch('/save-answers', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(selectedAnswers)
+                        });
+                        window.location.href = 'results';  // Navigate to results page
+                    } catch (error) {
+                        console.error('Error saving answers:', error);
+                    }
+                } else {
+                    // Your existing next button code
+                    counter++;
+                    loadQuestion();
+                }
+            });
+
+            document.getElementById('prev-button').addEventListener('click', () => {
+                if (counter > 1) {
+                    counter--;
+                    loadQuestion();
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <a href="../Page1/testproj.html" style="text-decoration: none">
+            <div>
+                <h1 class="app-title">Quiz App</h1>
+            </div>
+        </a>
+
+        <a href="../Page1/testproj.html">
+            <button class="exit-button">Exit</button>
+        </a>
+    </header>
+
+    <section class="quiz-info">
+        <span id="question-number">Question 1 of 10</span>
+        <span class="timer">Time Remaining: 9:51</span>
+    </section>
+
+    <main>
+        <article class="question-card">
+            <h2 id="question-text">Loading question...</h2>
+            
+            <div id="options-container">
+                <button class="option" id="option-a">Option A</button>
+                <button class="option" id="option-b">Option B</button>
+                <button class="option" id="option-c">Option C</button>
+                <button class="option" id="option-d">Option D</button>
+            </div>
+
+        </article>
+
+        <nav class="navigation">
+            <button class="nav-button" id="prev-button">Previous</button>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            <button class="nav-button" id="next-button">Next</button>
+        </nav>
+    </main>
+
+</body>
+</html>

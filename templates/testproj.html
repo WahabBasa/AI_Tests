@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    body {
+      margin: 0;
+      padding-top: 60px; 
+      font-family: 'Inter', sans-serif;
+      color: #2c2c2c;
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      z-index: 1000;
+    }
+
+    .nav a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav a:hover {
+      color: #007bff;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .header {
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 64;
+      margin-bottom: 48px; 
+      font-weight: 900; 
+    }
+
+    .header h1 {
+      font-size: 3rem; 
+      line-height: 1.2; 
+      font-weight: bold;
+      max-width: 900px;
+      margin: 0 auto;   
+      color: #333;
+    }
+
+    .steps {
+      display: flex;
+      justify-content: space-around;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+      margin-bottom: 64px;
+    }
+
+    .step {
+      text-align: center;
+      flex: 1;
+      min-width: 200px;
+      padding: 1rem;
+      color: #333;
+    }
+
+    .steps h3{
+        color:#007bff;
+    }
+
+    .action-section {
+      background: #f0f2f5;
+      padding: 2rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+      margin-top: 64px;
+    }
+
+    .action-section h2{
+        font-size: 30px;
+        color: #333;
+    }
+
+    .pdf-content, .quiz-content {
+      background: white;
+      padding: 1rem;
+      border-radius: 4px;
+      margin: 1rem 0;
+      color: #333;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="/">Home</a>
+    <a href="/quiz">AI Quiz</a>
+    <a href="/videos">Study Videos</a>
+  </nav>
+
+  <div class="container">
+    <header class="header">
+      <h1>Transform Your PDF Documents Into <br> Interactive Quizzes with AI</h1>
+    </header>
+
+    <div class="steps">
+      <div class="step">
+        <img src="https://img.icons8.com/ios-filled/50/000000/folder-invoices.png" alt="Upload Icon">
+        <h3>Upload Your PDF</h3>
+        <p>Simply upload your document</p>
+      </div>
+
+      <div class="step">
+        <img src="https://img.icons8.com/ios-filled/50/000000/machine-learning.png" alt="AI Icon">
+        <h3>AI Creates Questions</h3>
+        <p>Our AI generates relevant questions</p>
+      </div>
+
+      <div class="step">
+        <img src="https://img.icons8.com/ios-filled/50/000000/checked-2.png" alt="Quiz Icon">
+        <h3>Take Your Quiz</h3>
+        <p>Engage with your interactive quiz</p>
+      </div>
+    </div>
+
+    <div class="action-section">
+      <h2>See It In Action</h2>
+
+      <div class="pdf-content">
+        <h4>Sample PDF Content</h4>
+        <p>"The water cycle, also known as the hydrologic cycle, describes the continuous movement of water within the Earth and atmosphere. It is a complex system that includes many different processes: evaporation, transpiration, condensation, precipitation, and runoff..."</p>
+      </div>
+
+      <div class="quiz-content">
+        <h4>Generated Quiz Question</h4>
+        <p>What is another name for the water cycle?</p>
+        <p>○ Aquatic cycle</p>
+        <p>○ Hydrologic cycle</p>
+        <p>○ Precipitation cycle</p>
+      </div>
+
+      <a href="/quiz" class="button">Get Started ></a>
+    </div>
+  </div>
+</body>
+</html>
