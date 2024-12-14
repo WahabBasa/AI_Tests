@@ -156,41 +156,47 @@
     <script defer>
     
     document.addEventListener('DOMContentLoaded', async () => {
-    const container = document.querySelector('.scrollable-container');
-    
-    try {
-        const questionsRes = await fetch('/get-questions');
-        const answersRes = await fetch('/get-answers');
+        const container = document.querySelector('.scrollable-container');
+        const scoreDisplay = document.querySelector('.score');
         
-        const data = await questionsRes.json();
-        const answers = await answersRes.json();
-        
-        data.questions.forEach((question, index) => {
-            const questionNumber = index + 1;
-            const userAnswer = answers[questionNumber];
+        try {
+            const questions = await fetch('/get-questions');
+            const answers = await fetch('/get-answers');
             
-            let answerText = "Not answered";
-            if (userAnswer) {
-                const optionIndex = userAnswer.split('-')[1].charCodeAt(0) - 97;
-                answerText = question.options[optionIndex];
+            const questionData = await questions.json();
+            const answerData = await answers.json();
+            
+            // Display the actual score
+            const userScore = answerData.score;
+            const percentage = (userScore / 10) * 100;
+            scoreDisplay.innerHTML = `${userScore}/10 Correct - ${percentage}%<br>Great job! You're on the right track.`;
+            
+            for(let i = 0; i < questionData.questions.length; i++) {
+                const question = questionData.questions[i];
+                const questionNum = i + 1;
+                const userAnswer = answerData.answers[questionNum];
+                
+                let answerText = "Not answered";
+                if (userAnswer) {
+                    const optionNum = userAnswer.split('-')[1].charCodeAt(0) - 97;
+                    answerText = question.options[optionNum];
+                }
+                
+                const correctNum = question.correct.charCodeAt(0) - 65;
+                const correctText = question.options[correctNum];
+                
+                container.innerHTML += `
+                    <div class="question-set">
+                        <div class="question-text">${question.question}</div>
+                        <div class="user-answer">Your answer: ${answerText}</div>
+                        <div class="correct-answer">Correct answer: ${correctText}</div>
+                    </div>
+                `;
             }
-            
-            const correctIndex = question.correct.charCodeAt(0) - 65;
-            const correctText = question.options[correctIndex];
-            
-            container.innerHTML += `
-                <div class="question-set">
-                    <div class="question-text">${question.question}</div>
-                    <div class="user-answer">Your answer: ${answerText}</div>
-                    <div class="correct-answer">Correct answer: ${correctText}</div>
-                </div>
-            `;
-        });
-    } catch (error) {
-        container.innerHTML = 'Error loading results';
-    }
-});
-
+        } catch (error) {
+            container.innerHTML = 'Error loading results';
+        }
+    });
     </script>
 </head>
 <body>
@@ -203,18 +209,16 @@
     <div class="box1">
         <div class="results">
             <div class="quiz-header">Quiz Results</div>
-            <div class="score">7/10 Correct - 70%<br>Great job! You're on the right track.</div>
+            <div class="score">Loading score...</div>
         </div>
     </div>
 
     <div class="scrollable-container">
-    
-        
     </div>  
 
     <div class="button-container">
-        <a href="../Page3/Page3.html"><button class="button">Retake Quiz</button></a>
-        <a href="../Page2/Second_Page.html"><button class="button">New Quiz</button></a>
+        <a href="/test"><button class="button">Retake Quiz</button></a>
+        <a href="/quiz"><button class="button">New Quiz</button></a>
         <a href=""><button class="button">Share Results</button></a>
     </div>
 </body>

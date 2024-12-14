@@ -2,51 +2,27 @@
     "questions": [
         {
             "index": 1,
-            "question": "Where is JavaScript code typically placed in modern web development?",
+            "question": "What are the four values represented in the text-shadow property?",
             "options": [
-                "A) In a separate file that is included in the HTML5 document",
-                "B) Only within the <head> section of HTML",
-                "C) Directly inside the <body> tag",
-                "D) Always inline with HTML elements"
+                "A) Horizontal offset, vertical offset, blur radius, color",
+                "B) Width, height, opacity, color",
+                "C) Position, size, blur, transparency",
+                "D) X-coordinate, Y-coordinate, spread, shade"
             ],
             "correct": "A",
-            "explanation": "According to the text, JavaScript code is typically placed in a separate file and then included in the HTML5 document. This makes the code more reusable since it can be included in any HTML5 document, which is common practice in professional web development today."
+            "explanation": "According to the text, the text-shadow property has four specific values: horizontal offset (left/right), vertical offset (up/down), blur radius (sharpness of shadow), and color of the shadow."
         },
         {
             "index": 2,
-            "question": "What is the default MIME type for a <script> tag in HTML5?",
+            "question": "In CSS animations, what does the 'alternate' value for animation-direction property do?",
             "options": [
-                "A) application/javascript",
-                "B) text/javascript",
-                "C) application/ecmascript",
-                "D) text/plain"
-            ],
-            "correct": "B",
-            "explanation": "The text explicitly states that in HTML5, the default MIME type for a <script> is 'text/javascript', which is why you can omit the type attribute from <script> tags in HTML5 documents."
-        },
-        {
-            "index": 1,
-            "question": "What is the precedence relationship between equality operators and relational operators?",
-            "options": [
-                "A) Equality operators have higher precedence than relational operators",
-                "B) Relational operators have higher precedence than equality operators",
-                "C) Both operators have the same precedence level",
-                "D) The precedence depends on the specific operators being used"
-            ],
-            "correct": "B",
-            "explanation": "According to the text, equality operators have a lower precedence than relational operators"
-        },
-        {
-            "index": 2,
-            "question": "How do you create a new Date object according to the text?",
-            "options": [
-                "A) By just typing Date()",
-                "B) By using the date operator",
-                "C) By using the new operator followed by Date and parentheses",
-                "D) By calling the local time function"
+                "A) Plays the animation only forward",
+                "B) Plays the animation only in reverse",
+                "C) Plays the animation forwards first, then backwards",
+                "D) Plays the animation randomly"
             ],
             "correct": "C",
-            "explanation": "The text specifically states that to create a new instance of a Date object, you must use the new operator followed by Date and a pair of parentheses"
+            "explanation": "The text explicitly states that when using the 'alternate' value, the animation is played forwards first, then backwards, creating an alternating pattern."
         }
     ]
 }
