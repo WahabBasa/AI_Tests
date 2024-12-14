@@ -17,14 +17,25 @@ app = Flask(__name__,
 )
 
 CORS(app)
+
+# Load environment variables
 load_dotenv()
+
+# Set API key directly (for testing only - in production use environment variables)
+os.environ['ANTHROPIC_API_KEY'] = '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'
+
+# Initialize Anthropic client
+client = anthropic.Anthropic(
+    api_key=os.environ['ANTHROPIC_API_KEY']
+)
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 PROJECT_ROOT = Path(__file__).parent
 QUIZ_FILE_PATH = PROJECT_ROOT / 'quiz_questions.json'
 
-client = anthropic.Anthropic(api_key=os.getenv('ANTHROPIC_API_KEY'))
+
 MAX_CHUNKS = 5
 MAX_CHARS_PER_CHUNK = 10000
 
@@ -60,13 +71,9 @@ def get_questions():
 @app.route('/save-answers', methods=['POST'])
 def save_answers():
     try:
-        # Get the answers from the request
-        answers = request.json
-        
-        # Save answers to a file
+        quiz_data = request.json
         with open('quiz_answers.json', 'w') as file:
-            json.dump(answers, file)
-        
+            json.dump(quiz_data, file)
         return jsonify({"status": "success"})
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})

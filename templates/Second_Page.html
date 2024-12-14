@@ -9,32 +9,49 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <script defer>
-        let pdfContent = null;
-        let isProcessing = false;
+        
+        var pdfContent = null;
+        var isProcessing = false;
 
+        
         window.onload = function() {
-            const fileInput = document.createElement('input');
+            
+            var fileInput = document.createElement('input');
             fileInput.type = 'file';
             fileInput.accept = '.pdf';
             fileInput.style.display = 'none';
             
-            document.getElementById('pdfButton').onclick = () => fileInput.click();
-            fileInput.onchange = handleFileSelect;
-            document.getElementById('generateQuiz').onclick = handleQuizGeneration;
+            
+            var pdfButton = document.getElementById('pdfButton');
+            pdfButton.onclick = function() {
+                fileInput.click();
+            };
+
+            fileInput.onchange = function(event) {
+                checkAndProcessFile(event);
+            };
+
+            var generateButton = document.getElementById('generateQuiz');
+            generateButton.onclick = function() {
+                startQuizGeneration();
+            };
         };
 
-        function handleFileSelect(event) {
-            const file = event.target.files[0];
+        // Check if file is PDF 
+        function checkAndProcessFile(event) {
+            var file = event.target.files[0];
+            
             if (file && file.type === 'application/pdf') {
-                processFile(file);
+                readPDFFile(file);
             } else {
                 alert('Please upload a valid PDF file');
             }
         }
 
-        function processFile(file) {
-            const reader = new FileReader();
-            const uploadText = document.querySelector('.upload p');
+        // Read the PDF file
+        function readPDFFile(file) {
+            var reader = new FileReader();
+            var uploadText = document.querySelector('.upload p');
             
             reader.onload = function(e) {
                 pdfContent = e.target.result;
@@ -49,13 +66,14 @@
             reader.readAsDataURL(file);
         }
 
-        function handleQuizGeneration() {
+        // Generate quiz from PDF
+        function startQuizGeneration() {
             if (isProcessing || !pdfContent) {
                 alert('Please wait or upload a PDF first');
                 return;
             }
 
-            const generateButton = document.getElementById('generateQuiz');
+            var generateButton = document.getElementById('generateQuiz');
             isProcessing = true;
             generateButton.disabled = true;
             generateButton.textContent = 'Processing...';
@@ -73,10 +91,10 @@
                     throw new Error(data.error || 'Failed to generate quiz');
                 }
             })
-            .catch(error => {
+            .catch(function(error) {
                 alert(error.message);
             })
-            .finally(() => {
+            .finally(function() {
                 isProcessing = false;
                 generateButton.disabled = false;
                 generateButton.textContent = 'Generate Quiz';
@@ -89,11 +107,9 @@
 <body>
 
     <nav class="nav">
-
         <a href="/">Home</a>
         <a href="/quiz">AI Quiz</a>
         <a href="/videos">Study Videos</a>
-
       </nav>
 
     <div class="quiz">

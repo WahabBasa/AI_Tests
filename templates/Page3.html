@@ -93,21 +93,25 @@
 
         function setupNavigation() {
             document.getElementById('next-button').addEventListener('click', async () => {
-                if (counter === quizQuestions.length) {  // If it's the last question
+                if (counter === quizQuestions.length) {  
                     try {
+                        const quizData = {
+                            answers: selectedAnswers,
+                            score: score
+                        };
+                        
                         await fetch('/save-answers', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify(selectedAnswers)
+                            body: JSON.stringify(quizData)
                         });
-                        window.location.href = 'results';  // Navigate to results page
+                        window.location.href = 'results';
                     } catch (error) {
                         console.error('Error saving answers:', error);
                     }
                 } else {
-                    // Your existing next button code
                     counter++;
                     loadQuestion();
                 }
@@ -125,13 +129,13 @@
 
 <body>
     <header>
-        <a href="../Page1/testproj.html" style="text-decoration: none">
+        <a href="/" style="text-decoration: none"></a>
             <div>
                 <h1 class="app-title">Quiz App</h1>
             </div>
         </a>
 
-        <a href="../Page1/testproj.html">
+        <a href="/">
             <button class="exit-button">Exit</button>
         </a>
     </header>
